@@ -1,0 +1,36 @@
+cpu-64bit-architecture/
+├── README.md                     # Portada del proyecto: diagrama de bloques, características y demo visual
+├── LICENSE                       # Licencia MIT o Apache 2.0
+│
+├── docs/                         # Documentación técnica (el alma del portfolio)
+│   ├── ISA_SPECIFICATION.md      # Manual de instrucciones (opcodes, formatos, registros, flags)
+│   ├── DATAPATH_AND_CONTROL.md   # Explicación del ciclo de instrucción (Fetch-Decode-Execute)
+│   └── images/                   # Capturas limpias y diagramas exportados en alta resolución
+│       ├── block_diagram.png     # Esquema general de la CPU (hecho en Draw.io o Excalidraw)
+│       ├── alu_64bit_sim.png     # Captura de Multisim ejecutando una operación
+│       └── wave_demo.gif         # GIF corto mostrando los LEDs/sondas cambiando en tiempo real
+│
+├── hardware/                     # Todos los circuitos de Multisim organizados por capas
+│   ├── 01_primitives_nand/       # Capa base (1 bit): demostración académica desde puertas NAND
+│   │   ├── nand_not_and_or.ms14
+│   │   ├── full_adder_1bit.ms14
+│   │   └── d_flip_flop.ms14
+│   │
+│   ├── 02_components_64bit/      # Bloques funcionales escalados a 64 bits (subcircuitos)
+│   │   ├── alu_64bit.ms14        # Unidad Aritmético-Lógica + Flags (Zero, Carry, Negative, Overflow)
+│   │   ├── register_file.ms14    # Banco de registros (ej. 16 registros x 64 bits)
+│   │   ├── program_counter.ms14  # Contador de programa con soporte para saltos (JMP/BEQ)
+│   │   └── control_unit.ms14     # Decodificador de instrucciones y señales de control
+│   │
+│   └── 03_cpu_top_level/         # Integración completa
+│       └── cpu_64bit_full.ms14   # Esquema principal listo para abrir y simular
+│
+├── toolchain/                    # Herramientas de software propias para programar la CPU
+│   ├── assembler.py              # Script en Python que traduce tu código ensamblador a binario/hex
+│   └── disassembler.py           # (Opcional) Traduce binario de vuelta a ensamblador para depurar
+│
+└── programs/                     # Código de ejemplo para demostrar que la CPU funciona
+    ├── 01_fibonacci.asm          # Cálculo de la sucesión de Fibonacci en tu lenguaje ensamblador
+    ├── 01_fibonacci.hex          # Código máquina generado listo para cargar en la ROM de Multisim
+    ├── 02_bubble_sort.asm        # Ordenación de un array en memoria RAM
+    └── 02_bubble_sort.hex
